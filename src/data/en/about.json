@@ -1,0 +1,33 @@
+{
+  "title": "ARAFAT {SOMIH}",
+  "bio": [
+    "I don't shoot corporate headshots. I shoot the milliseconds that define a career. The raw, unfiltered kinetic energy of athletes pushing past their absolute limits.",
+    "With over a decade on the sidelines of top-tier football, my lens has captured the grit behind the glory. It's not about the perfect smile; it's about the tension, the impact, and the explosive release of professional sports. Every frame is a testament to high-velocity drama."
+  ],
+  "arsenal": {
+    "title": "The Arsenal",
+    "items": [
+      { "icon": "photo_camera", "label": "Dual Full-Frame Bodies" },
+      { "icon": "lens_camera", "label": "400mm f/2.8 Prime" },
+      { "icon": "flash_on", "label": "High-Speed Sync" },
+      { "icon": "memory", "label": "Terabytes of Storage" }
+    ]
+  },
+  "contact": {
+    "title": "Secure The Shot.",
+    "socials": [
+      { "name": "WhatsApp", "url": "#" },
+      { "name": "Facebook", "url": "#" },
+      { "name": "Instagram", "url": "#" }
+    ],
+    "form": {
+      "idLabel": "Identification",
+      "idPlaceholder": "YOUR NAME / AGENCY",
+      "commsLabel": "Comms Channel",
+      "commsPlaceholder": "EMAIL ADDRESS",
+      "briefLabel": "The Brief",
+      "briefPlaceholder": "DETAILS OF THE ASSIGNMENT...",
+      "submit": "Deploy Message"
+    }
+  }
+}

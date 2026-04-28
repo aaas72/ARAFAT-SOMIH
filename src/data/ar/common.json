@@ -1,0 +1,18 @@
+{
+  "nav": [
+    { "name": "الرئيسية", "path": "/" },
+    { "name": "الأرشيف البصري", "path": "/work" },
+    { "name": "التكريمات", "path": "/awards" },
+    { "name": "عن المصور", "path": "/about" }
+  ],
+  "footer": {
+    "branding": "عرفات سميح",
+    "links": [
+      { "name": "انستغرام", "url": "https://instagram.com" },
+      { "name": "تواصل معي", "url": "/about" },
+      { "name": "التراخيص المهنية", "url": "/about" }
+    ],
+    "copyright": "©2026 عرفات سميح. جميع الحقوق محفوظة. رصد اللحظات الرياضية الفارقة."
+  },
+  "language": "AR"
+}

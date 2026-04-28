@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  /* Original Colors from Raw Code */
+  --color-on-tertiary: #303032;
+  --color-secondary-fixed: #e2e2e2;
+  --color-surface-container-high: #2a2a2b;
+  --color-primary-fixed: #79ff5b;
+  --color-surface-variant: #353436;
+  --color-surface-container: #201f20;
+  --color-surface-tint: #2ae500;
+  --color-on-primary-fixed: #022100;
+  --color-surface-container-low: #1c1b1c;
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-primary-fixed-dim: #2ae500;
+  --color-inverse-surface: #e5e2e3;
+  --color-on-tertiary-fixed: #1b1b1d;
+  --color-inverse-primary: #106e00;
+  --color-secondary-fixed-dim: #c6c6c7;
+  --color-on-surface: #e5e2e3;
+  --color-secondary-container: #454747;
+  --color-surface-bright: #3a393a;
+  --color-outline-variant: #3c4b35;
+  --color-background: #131314;
+  --color-on-secondary-fixed: #1a1c1c;
+  --color-surface: #131314;
+  --color-on-secondary-fixed-variant: #454747;
+  --color-tertiary-fixed: #e4e2e4;
+  --color-on-error-container: #ffdad6;
+  --color-tertiary: #fcf9fb;
+  --color-on-error: #690005;
+  --color-surface-dim: #131314;
+  --color-secondary: #c6c6c7;
+  --color-inverse-on-surface: #313031;
+  --color-on-background: #e5e2e3;
+  --color-on-surface-variant: #baccb0;
+  --color-on-secondary-container: #b4b5b5;
+  --color-on-primary: #053900;
+  --color-outline: #85967c;
+  --color-on-tertiary-container: #616063;
+  --color-primary-container: #39ff14;
+  --color-surface-container-lowest: #0e0e0f;
+  --color-on-primary-fixed-variant: #095300;
+  --color-on-secondary: #2f3131;
+  --color-surface-container-highest: #353436;
+  --color-on-tertiary-fixed-variant: #474649;
+  --color-tertiary-fixed-dim: #c8c6c8;
+  --color-primary: #efffe3;
+  --color-tertiary-container: #dfdcdf;
+  --color-on-primary-container: #107100;
+
+  /* English Font Families */
+  --font-epilogue: "Epilogue", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Arabic Font Families */
+  --font-alexandria: "Alexandria", sans-serif;
+  --font-cairo: "Cairo", sans-serif;
+  --font-ibm-arabic: "IBM Plex Sans Arabic", sans-serif;
+  --font-tajawal: "Tajawal", sans-serif;
+
+  /* Bold Editorial Scale */
+  --font-size-headline-display: clamp(64px, 8vw, 140px);
+  --font-size-headline-lg: 72px;
+  --font-size-headline-md: 48px;
+  --font-size-body-lg: 20px;
+  --font-size-body-md: 16px;
+  --font-size-label-caps: 12px;
+
+  /* Spacing & Container */
+  --spacing-unit: 8px;
+  --spacing-gutter: 32px;
+  --spacing-section-gap: 160px;
+  --spacing-margin-edge: 64px;
+
+  --container-center: true;
+  --container-padding: 1.5rem;
+  --container-max-width-xl: 1200px;
+}
+
+/* Original Custom Utilities */
+@utility shadow-brutalist {
+  box-shadow: 4px 4px 0px 0px rgba(57, 255, 20, 0.4);
+}
+
+@utility kinetic-hover {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: -4px 4px 0px 0px #39ff14;
+  }
+}
+
+@utility outline-hover {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: inset 0 0 0 1px white;
+  }
+}
+
+@utility text-mask {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #e5e2e3;
+}
+
+:root {
+  font-family: var(--font-inter);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+}
+
+/* Arabic Specific Overrides */
+[lang="ar"] {
+  font-family: var(--font-tajawal);
+}
+
+[lang="ar"] h1, 
+[lang="ar"] .font-epilogue {
+  font-family: var(--font-alexandria) !important;
+  font-weight: 900 !important;
+  letter-spacing: normal !important;
+  line-height: 1.1 !important; /* Increased from 0.85 to avoid overlapping dots and ascenders */
+}
+
+[lang="ar"] h2, 
+[lang="ar"] h3,
+[lang="ar"] .font-black {
+  font-family: var(--font-cairo) !important;
+  font-weight: 900 !important;
+  letter-spacing: normal !important;
+  line-height: 1.2 !important;
+}
+
+[lang="ar"] .tracking-widest,
+[lang="ar"] .tracking-tighter,
+[lang="ar"] .tracking-[0.3em] {
+  letter-spacing: normal !important;
+}
+
+[lang="ar"] p, 
+[lang="ar"] .font-inter {
+  font-family: var(--font-tajawal);
+  line-height: 2.0 !important; /* Slightly increased for better Arabic readability */
+}
+
+[lang="ar"] .text-label-caps,
+[lang="ar"] .font-mono,
+[lang="ar"] .metadata-label {
+  font-family: var(--font-ibm-arabic) !important;
+  letter-spacing: normal !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Force container centering */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hide scrollbar for cleaner editorial look */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

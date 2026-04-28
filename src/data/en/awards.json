@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "AWARDS &<br />RECOGNITION",
+    "meta": "Curated recognition for cinematic sports photography // 2018—2026."
+  },
+  "items": [
+    {
+      "year": "2024",
+      "title": "INTERNATIONAL EDITORIAL EXCELLENCE",
+      "category": "Photo Essay - The Gritty Reality of Training Camp",
+      "img": "https://res.cloudinary.com/asdev1/image/upload/v1777336480/awards_1_lrgc4b.jpg"
+    },
+    {
+      "year": "2023",
+      "title": "BRITISH PRESS AWARDS",
+      "category": "Sports Photographer of the Year",
+      "img": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=2000"
+    },
+    {
+      "year": "2020",
+      "title": "NATIONAL GEOGRAPHIC CAPTURE",
+      "category": "Nature Meets Sport - Alpine Downhill",
+      "img": "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&q=80&w=2000"
+    }
+  ]
+}

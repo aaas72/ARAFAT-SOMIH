@@ -1,0 +1,18 @@
+{
+  "nav": [
+    { "name": "Home", "path": "/" },
+    { "name": "Work", "path": "/work" },
+    { "name": "Awards", "path": "/awards" },
+    { "name": "About", "path": "/about" }
+  ],
+  "footer": {
+    "branding": "ARAFAT SOMIH",
+    "links": [
+      { "name": "Instagram", "url": "https://instagram.com" },
+      { "name": "Contact", "url": "/about" },
+      { "name": "Licensing", "url": "/about" }
+    ],
+    "copyright": "©2026 ARAFAT SOMIH. ALL RIGHTS RESERVED. HIGH-VELOCITY OPTICS."
+  },
+  "language": "EN"
+}

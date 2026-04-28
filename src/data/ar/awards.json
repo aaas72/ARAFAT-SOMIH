@@ -1,0 +1,26 @@
+{
+  "header": {
+    "title": "الجوائز و<br />التقدير",
+    "meta": "تقدير منسق للتصوير الرياضي السينمائي // 2018—2026."
+  },
+  "items": [
+    {
+      "year": "2024",
+      "title": "التميز التحريري الدولي",
+      "category": "مقال مصور - الواقع القاسي لمعسكر التدريب",
+      "img": "https://res.cloudinary.com/asdev1/image/upload/v1777336480/awards_1_lrgc4b.jpg"
+    },
+    {
+      "year": "2023",
+      "title": "جوائز الصحافة البريطانية",
+      "category": "مصور الرياضة لهذا العام",
+      "img": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=2000"
+    },
+    {
+      "year": "2020",
+      "title": "ناشونال جيوغرافيك كابتشر",
+      "category": "الطبيعة تلتقي بالرياضة - المنحدرات الألبية",
+      "img": "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&q=80&w=2000"
+    }
+  ]
+}
