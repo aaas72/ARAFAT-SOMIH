@@ -1,0 +1,87 @@
+{
+  "login": {
+    "title": "مركز التحكم",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "دخول",
+    "checking": "جاري التحقق..."
+  },
+  "header": {
+    "title": "مركز",
+    "subtitle": "القيادة",
+    "logout": "خروج"
+  },
+  "tabs": {
+    "photos": "الأعمال",
+    "awards": "الجوائز",
+    "about": "من أنا",
+    "common": "العامة"
+  },
+  "sections": {
+    "gallery": "معرض الأعمال",
+    "awards_record": "سجل الجوائز",
+    "add_work": "إضافة عمل جديد",
+    "add_award": "إضافة جائزة",
+    "edit_work": "تعديل بيانات العمل",
+    "edit_award": "تعديل بيانات الجائزة",
+    "new_work": "نشر عمل جديد",
+    "new_award": "إضافة جائزة جديدة"
+  },
+  "fields": {
+    "title_ar": "العنوان (بالعربي)",
+    "title_en": "العنوان (بالإنجليزي)",
+    "desc_ar": "الوصف (بالعربي)",
+    "desc_en": "الوصف (بالإنجليزي)",
+    "category_ar": "التصنيف (بالعربي)",
+    "category_en": "التصنيف (بالإنجليزي)",
+    "camera": "الكاميرا",
+    "iso": "ISO",
+    "display_order": "ترتيب العرض",
+    "year": "السنة",
+    "profile_image": "الصورة الشخصية",
+    "hero_image": "صورة الغلاف",
+    "change_photo": "تغيير الصورة",
+    "select_photo": "اختر الصورة",
+    "ar_label": "بالعربي",
+    "en_label": "English"
+  },
+  "actions": {
+    "save": "حفظ",
+    "update": "تحديث",
+    "publish": "نشر",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "confirm_delete": "حذف؟",
+    "save_changes": "حفظ التعديلات",
+    "saving": "جاري الحفظ..."
+  },
+  "status": {
+    "saved": "تم الحفظ بنجاح",
+    "updated": "تم التحديث بنجاح",
+    "deleted": "تم الحذف بنجاح",
+    "changes_saved": "تم حفظ التعديلات بنجاح"
+  },
+  "keys": {
+    "home": "الرئيسية",
+    "work": "الأعمال",
+    "awards": "الجوائز",
+    "about": "من أنا",
+    "common": "التواصل والعامة",
+    "hero_title": "العنوان الرئيسي",
+    "hero_subtitle": "الوصف تحت العنوان",
+    "header_title": "عنوان الرأس",
+    "header_subtitle": "الوصف الفرعي",
+    "footer_desc": "وصف الفوتر",
+    "contact_email": "البريد الإلكتروني",
+    "contact_phone": "الهاتف / واتساب",
+    "social_instagram": "انستجرام",
+    "social_facebook": "فيسبوك",
+    "meta_title": "عنوان (SEO)",
+    "meta_desc": "وصف (SEO)",
+    "bio_text": "السيرة الذاتية",
+    "specialty": "التخصص الفني",
+    "profile_image": "الصورة الشخصية"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "login": {
+    "title": "Control Center",
+    "email": "Email Address",
+    "password": "Password",
+    "submit": "Sign In",
+    "checking": "Verifying..."
+  },
+  "header": {
+    "title": "Command",
+    "subtitle": "Center",
+    "logout": "Logout"
+  },
+  "tabs": {
+    "photos": "Works",
+    "awards": "Awards",
+    "about": "About",
+    "common": "General"
+  },
+  "sections": {
+    "gallery": "Works Gallery",
+    "awards_record": "Awards Record",
+    "add_work": "Add New Work",
+    "add_award": "Add Award",
+    "edit_work": "Edit Work Data",
+    "edit_award": "Edit Award Data",
+    "new_work": "Publish New Work",
+    "new_award": "Add New Award"
+  },
+  "fields": {
+    "title_ar": "Title (Arabic)",
+    "title_en": "Title (English)",
+    "desc_ar": "Description (Arabic)",
+    "desc_en": "Description (English)",
+    "category_ar": "Category (Arabic)",
+    "category_en": "Category (English)",
+    "camera": "Camera",
+    "iso": "ISO",
+    "display_order": "Display Order",
+    "year": "Year",
+    "profile_image": "Profile Image",
+    "hero_image": "Hero Image",
+    "change_photo": "Change Image",
+    "select_photo": "Select Image",
+    "ar_label": "Arabic",
+    "en_label": "English"
+  },
+  "actions": {
+    "save": "Save",
+    "update": "Update",
+    "publish": "Publish",
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm_delete": "Delete?",
+    "save_changes": "Save Changes",
+    "saving": "Saving..."
+  },
+  "status": {
+    "saved": "Saved successfully",
+    "updated": "Updated successfully",
+    "deleted": "Deleted successfully",
+    "changes_saved": "Changes saved successfully"
+  },
+  "keys": {
+    "home": "Home",
+    "work": "Works",
+    "awards": "Awards",
+    "about": "About Me",
+    "common": "General & Social",
+    "hero_title": "Hero Title",
+    "hero_subtitle": "Hero Subtitle",
+    "header_title": "Header Title",
+    "header_subtitle": "Header Subtitle",
+    "footer_desc": "Footer Description",
+    "contact_email": "Email Address",
+    "contact_phone": "Phone / WhatsApp",
+    "social_instagram": "Instagram",
+    "social_facebook": "Facebook",
+    "meta_title": "SEO Title",
+    "meta_desc": "SEO Description",
+    "bio_text": "Biography",
+    "specialty": "Specialty",
+    "profile_image": "Profile Photo"
+  }
+}

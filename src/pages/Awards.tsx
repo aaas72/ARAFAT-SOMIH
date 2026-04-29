@@ -1,12 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { supabase } from '../lib/supabase';
 
 const Awards: React.FC = () => {
-  const { t, locale } = useLanguage();
-  const { header, items } = t.awards;
-  
-  const [activeImage, setActiveImage] = useState(items[0].img);
+  const { t, language, locale } = useLanguage();
+  const { header } = t.awards;
+
+  const [items, setItems] = useState<any[]>([]);
+  const [activeImage, setActiveImage] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAwards() {
+      try {
+        const { data, error } = await supabase
+          .from('awards')
+          .select('*')
+          .order('year', { ascending: false });
+
+        if (data) {
+          setItems(data);
+          if (data.length > 0) setActiveImage(data[0].image_url);
+        } else if (error) {
+          console.error('Error fetching awards:', error);
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchAwards();
+  }, []);
+
+  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-white font-tajawal">{t.work.loading}</div>;
 
   return (
     <main className="flex flex-col lg:flex-row w-full min-h-screen lg:h-screen bg-background lg:overflow-hidden">
@@ -27,12 +55,12 @@ const Awards: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
 
         <div className="relative z-10 h-full flex flex-col justify-end lg:justify-center items-start p-8 lg:p-0">
-          <div className="w-full max-w-3xl lg:px-20">
+          <div className="w-full max-w-3xl px-8 lg:px-24 xl:px-32">
             <motion.h1
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="font-epilogue text-4xl lg:text-8xl font-black text-white mb-6 leading-[0.9] lg:leading-none tracking-tighter mix-blend-difference uppercase"
+              className="font-epilogue text-3xl lg:text-6xl font-black text-white mb-6 leading-[0.9] lg:leading-none tracking-tighter mix-blend-difference uppercase"
               dangerouslySetInnerHTML={{ __html: header.title }}
             />
             <motion.div
@@ -53,13 +81,13 @@ const Awards: React.FC = () => {
           .lg\\:scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         `}} />
 
-        <div className="w-full max-w-3xl px-8 lg:px-20 py-12 lg:py-24">
+        <div className="w-full max-w-3xl px-8 lg:px-24 xl:px-32 py-12 lg:py-24">
           <div className="flex flex-col">
-            {items.map((award, idx) => (
+            {items.map((award: any, idx: number) => (
               <motion.article
-                key={idx}
-                onMouseEnter={() => setActiveImage(award.img)}
-                onClick={() => setActiveImage(award.img)}
+                key={award.id}
+                onMouseEnter={() => setActiveImage(award.image_url)}
+                onClick={() => setActiveImage(award.image_url)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -71,10 +99,10 @@ const Awards: React.FC = () => {
                 </div>
                 <div className="flex-1 pr-6">
                   <h2 className="font-epilogue text-xl lg:text-3xl font-bold text-white group-hover:text-primary-container transition-colors duration-300 leading-[1.1]">
-                    {award.title}
+                    {language === 'ar' ? award.title_ar : award.title_en}
                   </h2>
                   <p className="font-inter text-[9px] lg:text-xs text-gray-500 mt-3 uppercase tracking-[0.2em] font-bold opacity-60">
-                    {award.category}
+                    {language === 'ar' ? award.category_ar : award.category_en}
                   </p>
                 </div>
                 <div className={`hidden lg:flex items-center opacity-0 group-hover:opacity-100 group-hover:translate-x-3 transition-all duration-300 text-primary-container ${locale === 'ar' ? 'rotate-180' : ''}`}>

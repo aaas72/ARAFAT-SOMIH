@@ -8,6 +8,7 @@ import Work from './pages/Work';
 import About from './pages/About';
 import PhotoDetail from './pages/PhotoDetail';
 import Awards from './pages/Awards';
+import Admin from './pages/Admin';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Scroll to top on route change
@@ -33,6 +34,7 @@ const AppRoutes = () => {
         <Route path="/work/:id" element={<PhotoDetail />} />
         <Route path="/awards" element={<Awards />} />
         <Route path="/about" element={<About />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Home />} />
       </Routes>
       {!isPhotoDetail && <Footer />}
@@ -43,7 +45,7 @@ const AppRoutes = () => {
 function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/ARAFAT-SOMIH">
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container">
           <AppRoutes />

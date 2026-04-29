@@ -31,5 +31,18 @@
       "description": "The scale of the arena. A wide-angle study of light and architectural dominance.",
       "metadata": { "Camera": "Sony A1 Professional", "Lens": "16-35mm f/2.8", "Aperture": "f/8.0", "Shutter": "1/500s", "ISO": "400" }
     }
-  ]
+  ],
+  "detail": {
+    "loading": "Retrieving High-Velocity Asset...",
+    "notFound": "Photo Archive Not Found",
+    "back": "Back to Archive",
+    "metadataTitle": "Capture Metadata",
+    "labels": {
+      "camera": "Camera",
+      "lens": "Lens",
+      "aperture": "Aperture",
+      "shutter": "Shutter",
+      "iso": "ISO"
+    }
+  }
 }

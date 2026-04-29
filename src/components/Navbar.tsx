@@ -58,13 +58,13 @@ const Navbar: React.FC = () => {
           : 'bg-black/80 backdrop-blur-xl border-b border-white/5 shadow-2xl'
           }`}
       >
-        <div className="container mx-auto flex justify-between items-center py-5 px-6 lg:px-0">
+        <div className="container mx-auto flex justify-between items-center py-5 px-6 md:px-12 lg:px-20 xl:px-32">
           <Link to="/" className="text-xl lg:text-2xl font-black text-white italic tracking-tighter hover:text-lime-400 transition-colors">
             {t.common.footer.branding}
           </Link>
 
           <div className="hidden lg:flex gap-10">
-            {navItems.map((item) => (
+            {navItems.map((item: { name: string; path: string }) => (
               <NavLink
                 key={item.name}
                 to={item.path}
@@ -92,12 +92,9 @@ const Navbar: React.FC = () => {
             {/* Language Switcher */}
             <button 
               onClick={toggleLanguage}
-              className="flex text-white hover:text-lime-400 transition-colors duration-300 active:scale-90 items-center gap-1 group"
+              className="px-6 py-3 border border-white/10 text-[12px] font-black text-white uppercase hover:bg-white hover:text-black transition-all active:scale-95 whitespace-nowrap"
             >
-              <span className="material-symbols-outlined text-xl lg:text-2xl" style={{ fontVariationSettings: "'FILL' 0" }}>language</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest hidden md:block">
-                {locale === 'en' ? 'AR' : 'EN'}
-              </span>
+              {locale === 'en' ? 'العربية' : 'English'}
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -122,7 +119,7 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-12 p-10 lg:hidden"
           >
-            {navItems.map((item, idx) => (
+            {navItems.map((item: { name: string; path: string }, idx: number) => (
               <NavLink
                 key={item.name}
                 to={item.path}
