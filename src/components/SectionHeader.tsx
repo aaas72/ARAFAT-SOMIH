@@ -21,13 +21,13 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ title, subtitle, meta }) 
 
   return (
     <section className="w-full mb-16 lg:mb-24 overflow-hidden">
-      <div className="container mx-auto mb-8 lg:mb-12 px-6 lg:px-0">
+      <div className="container mx-auto mb-8 lg:mb-12 px-6 md:px-12 lg:px-20 xl:px-32">
         <h1 className="font-epilogue text-5xl lg:text-8xl font-black text-white uppercase leading-[0.9] lg:leading-[0.8] tracking-tighter m-0 p-0 break-words">
           {renderTitle()}
         </h1>
       </div>
 
-      <div className="container mx-auto px-6 lg:px-0">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 xl:px-32">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-gutter justify-between items-start lg:items-end border-t border-white/10 pt-8 lg:pt-10">
           <div className="max-w-2xl">
             <p className="font-inter text-body-md lg:text-body-lg text-gray-400 leading-relaxed">
