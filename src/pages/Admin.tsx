@@ -18,7 +18,7 @@ const AutoTextArea: React.FC<{ value: string, onChange: (val: string) => void, d
 };
 
 const Admin: React.FC = () => {
-  const { t, locale, setLocale } = useLanguage();
+  const { t, locale } = useLanguage();
   const isRTL = locale === 'ar';
   const adminT = t.admin;
 
