@@ -50,7 +50,7 @@ const PhotoCard: React.FC<{ item: any, onClick: () => void }> = ({ item, onClick
 
 const Work: React.FC = () => {
   const navigate = useNavigate();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { header, loading: loadingText } = t.work;
 
   const [photos, setPhotos] = useState<any[]>([]);
