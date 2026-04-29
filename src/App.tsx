@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -45,12 +45,12 @@ const AppRoutes = () => {
 function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter basename="/ARAFAT-SOMIH">
+      <HashRouter>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container">
           <AppRoutes />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </LanguageProvider>
   );
 }
