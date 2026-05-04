@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader';
 import { useLanguage } from '../context/LanguageContext';
 import { supabase } from '../lib/supabase';
+import Loading from '../components/Loading';
 
 // Skeleton Component
 const Skeleton = () => (
@@ -50,36 +51,52 @@ const PhotoCard: React.FC<{ item: any, onClick: () => void }> = ({ item, onClick
 
 const Work: React.FC = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
-  const { header, loading: loadingText } = t.work;
+  const { locale, t: staticT } = useLanguage();
+  const isRTL = locale === 'ar';
 
   const [photos, setPhotos] = useState<any[]>([]);
+  const [content, setContent] = useState<any>({});
   const [visibleCount, setVisibleCount] = useState(6);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loading, setLoading] = useState(true);
   const loaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    async function fetchPhotos() {
+    async function fetchData() {
       try {
+        // Fetch Content
+        const { data: contentData } = await supabase.from('site_content').select('*').eq('page', 'work');
+        if (contentData) {
+          const mapped = contentData.reduce((acc: any, item: any) => {
+            acc[item.section] = isRTL ? item.content_ar : item.content_en;
+            return acc;
+          }, {});
+          setContent(mapped);
+        }
+
+        // Fetch Photos
         const { data, error } = await supabase
           .from('photos')
           .select('*')
           .order('display_order', { ascending: true });
 
-        if (data) {
-          setPhotos(data);
-        } else if (error) {
-          console.error('Error fetching photos:', error);
-        }
+        if (data) setPhotos(data);
+        else if (error) console.error('Error fetching photos:', error);
       } catch (err) {
         console.error('Fetch error:', err);
       } finally {
         setLoading(false);
       }
     }
-    fetchPhotos();
-  }, []);
+    fetchData();
+  }, [isRTL]);
+
+  const header = {
+    title: content.header_title || staticT.work.header.title,
+    subtitle: content.header_subtitle || staticT.work.header.subtitle,
+    meta: content.header_meta || staticT.work.header.meta
+  };
+  const loadingText = staticT.work.loading;
 
   const visibleItems = photos.slice(0, visibleCount);
 
@@ -108,9 +125,7 @@ const Work: React.FC = () => {
 
       <section className="container mx-auto px-6 md:px-12 lg:px-20 xl:px-32 pb-16 lg:pb-section-gap">
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-gutter">
-            {[1, 2, 3, 4, 5, 6].map(i => <Skeleton key={i} />)}
-          </div>
+          <Loading />
         ) : (
           <div className="group columns-1 sm:columns-2 lg:columns-3 gap-4 lg:gap-gutter space-y-4 lg:space-y-gutter">
             {visibleItems.map((item: any) => (

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { supabase } from '../lib/supabase';
+import Loading from '../components/Loading';
 
 const PhotoDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,7 +36,7 @@ const PhotoDetail: React.FC = () => {
     if (id) fetchPhoto();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-white font-tajawal">{detailT.loading}</div>;
+  if (loading) return <Loading />;
   if (!photo) return <div className="min-h-screen bg-background flex items-center justify-center text-white font-tajawal">{detailT.notFound}</div>;
 
   const isRTL = locale === 'ar';

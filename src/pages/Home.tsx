@@ -1,12 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
+import { supabase } from '../lib/supabase';
+import Loading from '../components/Loading';
 
 const Home: React.FC = () => {
-  const { t, locale } = useLanguage();
-  const { hero, metadata } = t.home;
+  const { locale } = useLanguage();
   const isRTL = locale === 'ar';
+  const [content, setContent] = useState<any>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const { data } = await supabase.from('site_content').select('*');
+      if (data) {
+        const mapped = data.reduce((acc: any, item: any) => {
+          if (!acc[item.page]) acc[item.page] = {};
+          acc[item.page][item.section] = isRTL ? item.content_ar : item.content_en;
+          return acc;
+        }, {});
+        setContent(mapped);
+      }
+      setLoading(false);
+    };
+    fetchContent();
+  }, [isRTL]);
+
+  if (loading) return <Loading />;
+
+  const home = content.home || {};
+  const common = content.common || {};
+  const hero = {
+    title: home.hero_title || (isRTL ? 'تصوير رياضي' : 'Cinematic Sports'),
+    highlight: home.hero_highlight || (isRTL ? 'سينمائي' : 'Photography'),
+    suffix: home.hero_suffix || '',
+    subtext: home.hero_subtext || (isRTL ? 'رصد اللحظات التي تصنع التاريخ.' : 'Capturing the moments that define history.'),
+    cta: home.hero_cta || (isRTL ? 'اكتشف العمل' : 'Discover Work')
+  };
+
+  const metadata = {
+    lat: common.meta_lat || '24.7136° N',
+    lng: common.meta_lng || '46.6753° E',
+    location: common.meta_location || (isRTL ? 'الرياض، المملكة العربية السعودية' : 'RIYADH, SAUDI ARABIA')
+  };
 
   const renderSubtext = (text: string) => {
     const parts = text.split(/(\{.*?\})/g);

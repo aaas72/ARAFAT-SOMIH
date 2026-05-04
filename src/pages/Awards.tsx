@@ -2,18 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { supabase } from '../lib/supabase';
+import Loading from '../components/Loading';
 
 const Awards: React.FC = () => {
-  const { t, language, locale } = useLanguage();
-  const { header } = t.awards;
+  const { t: staticT, language, locale } = useLanguage();
+  const isRTL = locale === 'ar';
 
   const [items, setItems] = useState<any[]>([]);
+  const [content, setContent] = useState<any>({});
   const [activeImage, setActiveImage] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchAwards() {
+    async function fetchData() {
       try {
+        // Fetch Content
+        const { data: contentData } = await supabase.from('site_content').select('*').eq('page', 'awards');
+        if (contentData) {
+          const mapped = contentData.reduce((acc: any, item: any) => {
+            acc[item.section] = isRTL ? item.content_ar : item.content_en;
+            return acc;
+          }, {});
+          setContent(mapped);
+        }
+
+        // Fetch Awards
         const { data, error } = await supabase
           .from('awards')
           .select('*')
@@ -31,10 +44,15 @@ const Awards: React.FC = () => {
         setLoading(false);
       }
     }
-    fetchAwards();
-  }, []);
+    fetchData();
+  }, [isRTL]);
 
-  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center text-white font-tajawal">{t.work.loading}</div>;
+  const header = {
+    title: content.header_title || staticT.awards.header.title,
+    meta: content.header_meta || staticT.awards.header.meta
+  };
+
+  if (loading) return <Loading />;
 
   return (
     <main className="flex flex-col lg:flex-row w-full min-h-screen lg:h-screen bg-background lg:overflow-hidden">
