@@ -62,6 +62,13 @@ const Admin: React.FC = () => {
 
   useEffect(() => { if (session) fetchData(); }, [session, activeTab]);
 
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => setStatus(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
   const fetchData = async () => {
     setLoading(true);
     if (activeTab === 'photos') {
@@ -283,11 +290,11 @@ const Admin: React.FC = () => {
                   <div key={p.id} className="group relative aspect-video bg-[#151517] border border-white/5 overflow-hidden rounded-sm shadow-xl">
                     <img src={p.image_url} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4 lg:opacity-0 group-hover:opacity-100 transition-all">
-                      <div className="flex gap-2 w-full justify-between items-center">
-                         <p className={`text-[10px] font-black uppercase tracking-widest text-primary-container truncate ${isRTL ? 'font-tajawal' : 'font-inter'}`}>{isRTL ? p.title_ar : p.title_en}</p>
-                         <div className="flex gap-2">
+                      <div className="flex gap-2 w-full justify-between items-center min-w-0">
+                         <p className={`text-[10px] font-black uppercase tracking-widest text-primary-container truncate flex-grow ${isRTL ? 'font-tajawal' : 'font-inter'}`}>{isRTL ? p.title_ar : p.title_en}</p>
+                         <div className="flex gap-2 flex-shrink-0">
                             <button onClick={() => startEdit(p)} className="w-8 h-8 bg-primary-container text-black rounded-full flex items-center justify-center hover:scale-110 transition-all"><span className="material-symbols-outlined text-[16px]">edit</span></button>
-                            <button onClick={() => { if(confirm(adminT.actions.confirm_delete)) supabase.from('photos').delete().eq('id', p.id).then(() => fetchData()) }} className="w-8 h-8 bg-black/70 text-primary-container border border-primary-container/20 rounded-full flex items-center justify-center hover:scale-110 transition-all"><span className="material-symbols-outlined text-[16px]">delete</span></button>
+                            <button onClick={() => { if(confirm(adminT.actions.confirm_delete)) supabase.from('photos').delete().eq('id', p.id).then(() => { setStatus({ type: 'success', msg: adminT.status.deleted || 'Deleted successfully' }); fetchData(); }) }} className="w-8 h-8 bg-black/70 text-primary-container border border-primary-container/20 rounded-full flex items-center justify-center hover:scale-110 transition-all"><span className="material-symbols-outlined text-[16px]">delete</span></button>
                          </div>
                       </div>
                     </div>
@@ -303,15 +310,15 @@ const Admin: React.FC = () => {
                      <div className="w-20 md:w-32 aspect-square bg-black overflow-hidden flex-shrink-0 border border-white/5">
                         {a.image_url ? <img src={a.image_url} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" /> : <div className="w-full h-full flex items-center justify-center opacity-20"><span className="material-symbols-outlined text-3xl">emoji_events</span></div>}
                      </div>
-                     <div className="flex-grow flex justify-between items-center">
-                        <div className="space-y-1">
+                     <div className="flex-grow flex justify-between items-center min-w-0 gap-4">
+                        <div className="space-y-1 min-w-0 flex-grow">
                            <span className="text-2xl md:text-3xl font-black text-primary-container opacity-50 group-hover:opacity-100 transition-all">{a.year}</span>
-                           <p className="font-black text-sm md:text-lg truncate max-w-[120px] md:max-w-full">{isRTL ? a.title_ar : a.title_en}</p>
+                           <p className="font-black text-sm md:text-lg truncate w-full">{isRTL ? a.title_ar : a.title_en}</p>
                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{isRTL ? a.category_ar : a.category_en}</p>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                            <button onClick={() => startEdit(a)} className="w-8 h-8 md:w-10 md:h-10 bg-primary-container text-black rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg"><span className="material-symbols-outlined text-sm">edit</span></button>
-                           <button onClick={() => { if(confirm(adminT.actions.confirm_delete)) supabase.from('awards').delete().eq('id', a.id).then(() => fetchData()) }} className="w-8 h-8 md:w-10 md:h-10 bg-black/70 text-primary-container border border-primary-container/20 rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg"><span className="material-symbols-outlined text-sm">delete</span></button>
+                           <button onClick={() => { if(confirm(adminT.actions.confirm_delete)) supabase.from('awards').delete().eq('id', a.id).then(() => { setStatus({ type: 'success', msg: adminT.status.deleted || 'Deleted successfully' }); fetchData(); }) }} className="w-8 h-8 md:w-10 md:h-10 bg-black/70 text-primary-container border border-primary-container/20 rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg"><span className="material-symbols-outlined text-sm">delete</span></button>
                         </div>
                      </div>
                   </div>

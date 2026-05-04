@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { supabase } from '../lib/supabase';
+import Loading from '../components/Loading';
 
 const About: React.FC = () => {
   const { locale } = useLanguage();
@@ -45,18 +46,18 @@ const About: React.FC = () => {
     });
   };
 
-  if (loading) return <div className="min-h-screen bg-background flex items-center justify-center"><div className="w-10 h-10 border-4 border-primary-container border-t-transparent rounded-full animate-spin"></div></div>;
+  if (loading) return <Loading />;
 
   const about = content.about || {};
   const common = content.common || {};
-  const profileImage = about.profile_image || "https://lh3.googleusercontent.com/aida-public/AB6AXuAgepEKNnuoKVcH_X-c9Y0JFoxAJh_st3bAuszuklK5t2nE5GnEoQUXStg9vDDClznwfn8Uw7ybRw91fCsOuOiygj2Sup15zZUCGJsdnW_q5ADKVgTziXcHLO7EgZ6Wn5_e_KpUR5T5FCrbwUNN8reXjdv1Sp6kNY6hA8Whlj_sxJoIPH1eGoa94yTXTx7I_NRvK4Jmyfcj7C-MnqOJiinUr8pt0LKNc8zyLaR2mSK1w19KsHGtUQFbHavI0G-7SAFInso2Ee2mOg";
+  const profileImage = about.profile_image;
 
   return (
     <div className="flex-grow pt-32 pb-section-gap">
       {/* About Section: Contained */}
-      <section className="max-w-7xl mx-auto px-gutter min-h-[819px] flex flex-col md:flex-row relative gap-12 lg:gap-20 py-32 items-stretch">
+      <section className="max-w-7xl mx-auto px-gutter min-h-[819px] flex flex-col md:flex-row relative gap-12 lg:gap-20 py-32 items-start">
         {/* Left: Gritty Portrait */}
-        <div className="w-full md:w-1/2 min-h-[512px] md:min-h-full relative overflow-hidden shadow-2xl border border-white/5">
+        <div className="w-full md:w-5/12 aspect-[4/5] relative overflow-hidden shadow-2xl border border-white/5">
           <img 
             alt="Photographer Portrait" 
             className="absolute inset-0 w-full h-full object-cover object-center scale-105" 
@@ -98,25 +99,53 @@ const About: React.FC = () => {
             {/* Arsenal Section */}
             <div className="border-t border-white/10 pt-8 mt-12">
               <h3 className="font-label-caps text-label-caps text-surface-tint uppercase tracking-widest mb-6">
-                {isRTL ? "العتاد الفني" : "The Arsenal"}
+                {about.arsenal_title || (isRTL ? "العتاد الفني" : "The Arsenal")}
               </h3>
               <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-center gap-4">
-                  <span className="material-symbols-outlined text-on-surface-variant text-2xl">photo_camera</span>
-                  <span className="font-body-md text-body-md text-on-surface">{isRTL ? "هيكلين إطار كامل" : "Dual Full-Frame Bodies"}</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="material-symbols-outlined text-on-surface-variant text-2xl">lens_camera</span>
-                  <span className="font-body-md text-body-md text-on-surface">400mm f/2.8 Prime</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="material-symbols-outlined text-on-surface-variant text-2xl">flash_on</span>
-                  <span className="font-body-md text-body-md text-on-surface">{isRTL ? "مزامنة فلاش عالية" : "High-Speed Sync"}</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="material-symbols-outlined text-on-surface-variant text-2xl">memory</span>
-                  <span className="font-body-md text-body-md text-on-surface">{isRTL ? "مساحات تخزين تيرابايت" : "Terabytes of Storage"}</span>
-                </div>
+                {about.arsenal_1 && (
+                  <div className="flex items-center gap-4">
+                    <span className="material-symbols-outlined text-on-surface-variant text-2xl">photo_camera</span>
+                    <span className="font-body-md text-body-md text-on-surface">{about.arsenal_1}</span>
+                  </div>
+                )}
+                {about.arsenal_2 && (
+                  <div className="flex items-center gap-4">
+                    <span className="material-symbols-outlined text-on-surface-variant text-2xl">lens_camera</span>
+                    <span className="font-body-md text-body-md text-on-surface">{about.arsenal_2}</span>
+                  </div>
+                )}
+                {about.arsenal_3 && (
+                  <div className="flex items-center gap-4">
+                    <span className="material-symbols-outlined text-on-surface-variant text-2xl">flash_on</span>
+                    <span className="font-body-md text-body-md text-on-surface">{about.arsenal_3}</span>
+                  </div>
+                )}
+                {about.arsenal_4 && (
+                  <div className="flex items-center gap-4">
+                    <span className="material-symbols-outlined text-on-surface-variant text-2xl">memory</span>
+                    <span className="font-body-md text-body-md text-on-surface">{about.arsenal_4}</span>
+                  </div>
+                )}
+                {!about.arsenal_1 && !about.arsenal_2 && !about.arsenal_3 && !about.arsenal_4 && (
+                   <>
+                    <div className="flex items-center gap-4">
+                      <span className="material-symbols-outlined text-on-surface-variant text-2xl">photo_camera</span>
+                      <span className="font-body-md text-body-md text-on-surface">{isRTL ? "هيكلين إطار كامل" : "Dual Full-Frame Bodies"}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="material-symbols-outlined text-on-surface-variant text-2xl">lens_camera</span>
+                      <span className="font-body-md text-body-md text-on-surface">400mm f/2.8 Prime</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="material-symbols-outlined text-on-surface-variant text-2xl">flash_on</span>
+                      <span className="font-body-md text-body-md text-on-surface">{isRTL ? "مزامنة فلاش عالية" : "High-Speed Sync"}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="material-symbols-outlined text-on-surface-variant text-2xl">memory</span>
+                      <span className="font-body-md text-body-md text-on-surface">{isRTL ? "مساحات تخزين تيرابايت" : "Terabytes of Storage"}</span>
+                    </div>
+                   </>
+                )}
               </div>
             </div>
           </div>
